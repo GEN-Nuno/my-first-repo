@@ -1,0 +1,134 @@
+from PyQt5.QtWidgets import QApplication, QMessageBox
+from patterns.command import Command, OpenViewCommand
+from patterns.observer import Observer
+from views.builders.view_builder import Director, TodayTaskViewBuilder, AllScheduleViewBuilder
+from views.builders.theme_factory import LightThemeFactory
+from controllers.task_controller import TaskController
+from controllers.calculation_controller import CalculationController
+import traceback
+import sys
+
+class MainController(Observer):
+    """Main controller for the scheduler application"""
+    
+    def __init__(self, model, view_builder):
+        self.model = model
+        self.model.attach(self)
+        
+        try:
+            # Create main view
+            director = Director(view_builder)
+            self.main_view = director.construct()
+            
+            # Initialize sub-controllers
+            self.task_controller = TaskController(model)
+            self.calculation_controller = CalculationController(model)
+            
+            # Set the task controller in main view for task details
+            self.main_view.set_task_detail_controller(self.task_controller)
+            
+            # Connect UI signals to commands
+            self.connect_signals()
+        except Exception as e:
+            print(f"Error during controller initialization: {e}")
+            traceback.print_exc()
+            QApplication.quit()
+    
+    def connect_signals(self):
+        """Connect UI signals to commands"""
+        # Main view buttons
+        try:
+            self.main_view.today_task_button.clicked.connect(
+                lambda: OpenViewCommand(self, "show_today_task_view").execute()
+            )
+            self.main_view.all_schedule_button.clicked.connect(
+                lambda: OpenViewCommand(self, "show_all_schedule_view").execute()
+            )
+            self.main_view.calculate_button.clicked.connect(
+                lambda: OpenViewCommand(self, "show_calculation_view").execute()
+            )
+        except Exception as e:
+            print(f"Error connecting signals: {e}")
+            traceback.print_exc()
+    
+    def update(self, subject):
+        """Observer pattern update method"""
+        if subject == self.model:
+            try:
+                # Get today's tasks INCLUDING Free tasks for the main view
+                # We need to include manually added Free tasks in the main view
+                self.main_view.update_today_tasks(self.model.get_today_tasks(include_free=True))
+            except Exception as e:
+                print(f"Error updating main view: {e}")
+                traceback.print_exc()
+    
+    def show_main_view(self):
+        """Show the main application window"""
+        self.main_view.show()
+    
+    def show_today_task_view(self):
+        """Show the today's task view"""
+        try:
+            theme_factory = LightThemeFactory()
+            builder = TodayTaskViewBuilder(theme_factory)
+            director = Director(builder)
+            view = director.construct()
+            
+            # Set up view with controller and data
+            # Only load tasks for today's day of week, NOT Free tasks (they will be available for manual addition)
+            view.set_controller(self.task_controller)
+            view.set_tags(self.model.tags)
+            view.set_tasks(self.model.get_today_tasks(include_free=False))
+            
+            # Connect a signal when the dialog is accepted/closed
+            view.finished.connect(lambda result: self.model.notify())
+            
+            # Store reference to prevent garbage collection
+            self._today_task_view = view
+            view.show()
+        except Exception as e:
+            QMessageBox.critical(self.main_view, "Error", f"Failed to open Today's Task view: {str(e)}")
+            print(f"Error showing today task view: {e}")
+            traceback.print_exc()
+    
+    def show_all_schedule_view(self):
+        """Show the all schedule view"""
+        try:
+            theme_factory = LightThemeFactory()
+            builder = AllScheduleViewBuilder(theme_factory)
+            director = Director(builder)
+            view = director.construct()
+            
+            # Set up view with controller and data
+            view.set_controller(self.task_controller)
+            view.set_tags(self.model.tags)
+            view.set_tasks(self.model.tasks)
+            
+            # Store reference to prevent garbage collection
+            self._all_schedule_view = view
+            view.show()
+        except Exception as e:
+            QMessageBox.critical(self.main_view, "Error", f"Failed to open All Schedule view: {str(e)}")
+            print(f"Error showing all schedule view: {e}")
+            traceback.print_exc()
+    
+    def show_calculation_view(self):
+        """Show the calculation view if all tasks are completed"""
+        try:
+            # Get today's tasks including Free tasks that have been manually added
+            today_tasks = self.model.get_today_tasks(include_free=True)
+            
+            # Check if all tasks are completed
+            if not today_tasks:
+                self.main_view.show_error("本日のタスクがありません。")
+                return
+                
+            if not all(task.completed_today for task in today_tasks):
+                self.main_view.show_error("Not all tasks are completed for today!")
+                return
+            
+            self.calculation_controller.show_calculation_view(today_tasks)
+        except Exception as e:
+            QMessageBox.critical(self.main_view, "Error", f"Failed to open Calculation view: {str(e)}")
+            print(f"Error showing calculation view: {e}")
+            traceback.print_exc()

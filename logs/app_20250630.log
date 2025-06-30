@@ -1,0 +1,100 @@
+2025-06-30 21:35:54,816 - root - INFO - Application started
+2025-06-30 21:35:54,827 - root - INFO - Loaded 2 tasks from c:\SH\task_Lists.conf
+2025-06-30 21:35:54,827 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 21:36:08,789 - root - INFO - Theme changed to dark
+2025-06-30 21:36:10,519 - root - INFO - Theme changed to light
+2025-06-30 21:36:11,682 - root - INFO - Theme changed to dark
+2025-06-30 21:36:13,149 - root - INFO - Theme changed to light
+2025-06-30 21:36:40,249 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 21:37:23,909 - root - INFO - Theme changed to dark
+2025-06-30 21:37:24,642 - root - INFO - Theme changed to light
+2025-06-30 21:37:27,131 - root - INFO - Backed up tasks to c:\SH\backups\20250630_213727\task_Lists.conf
+2025-06-30 21:37:27,131 - root - INFO - Backed up tags to c:\SH\backups\20250630_213727\tags.conf
+2025-06-30 21:37:27,134 - root - INFO - Backed up work_time to c:\SH\backups\20250630_213727\work_time.conf
+2025-06-30 21:37:27,137 - root - INFO - Backed up today_tasks to c:\SH\backups\20250630_213727\todaytask.conf
+2025-06-30 21:37:27,138 - root - INFO - Backup completed: c:\SH\backups\20250630_213727
+2025-06-30 21:37:58,139 - root - ERROR - Error occurred: No module named 'openpyxl'
+Traceback (most recent call last):
+  File "c:\SH\views\main_view.py", line 384, in export_to_excel
+    filename = ExcelExporter.export_tasks(tasks)
+  File "c:\SH\utils\excel_exporter.py", line 54, in export_tasks
+    df.to_excel(filename, index=False)
+  File "C:\Users\potet\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\potet\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\generic.py", line 2436, in to_excel
+    formatter.write(
+  File "C:\Users\potet\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\io\formats\excel.py", line 943, in write
+    writer = ExcelWriter(
+  File "C:\Users\potet\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\io\excel\_openpyxl.py", line 57, in __init__
+    from openpyxl.workbook import Workbook
+ModuleNotFoundError: No module named 'openpyxl'
+2025-06-30 21:38:00,389 - root - ERROR - Error occurred: No module named 'openpyxl'
+Traceback (most recent call last):
+  File "c:\SH\controllers\main_controller.py", line 174, in export_to_excel
+    filename = ExcelExporter.export_tasks(tasks)
+  File "c:\SH\utils\excel_exporter.py", line 54, in export_tasks
+    df.to_excel(filename, index=False)
+  File "C:\Users\potet\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\util\_decorators.py", line 333, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\potet\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\core\generic.py", line 2436, in to_excel
+    formatter.write(
+  File "C:\Users\potet\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\io\formats\excel.py", line 943, in write
+    writer = ExcelWriter(
+  File "C:\Users\potet\AppData\Local\Programs\Python\Python310\lib\site-packages\pandas\io\excel\_openpyxl.py", line 57, in __init__
+    from openpyxl.workbook import Workbook
+ModuleNotFoundError: No module named 'openpyxl'
+2025-06-30 21:38:36,401 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 21:38:36,406 - root - INFO - Saved 3 today's tasks to c:\SH\todaytask.conf
+2025-06-30 21:38:36,406 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 21:59:35,159 - root - INFO - Application started
+2025-06-30 21:59:35,187 - root - INFO - Loaded 4 tasks from c:\SH\task_Lists.conf
+2025-06-30 21:59:35,187 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 21:59:59,200 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 21:59:59,211 - root - INFO - Saved 3 today's tasks to c:\SH\todaytask.conf
+2025-06-30 21:59:59,211 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:03:18,779 - root - INFO - Application started
+2025-06-30 22:03:18,804 - root - INFO - Loaded 4 tasks from c:\SH\task_Lists.conf
+2025-06-30 22:03:18,804 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 22:05:29,650 - root - INFO - Application started
+2025-06-30 22:05:29,660 - root - INFO - Loaded 4 tasks from c:\SH\task_Lists.conf
+2025-06-30 22:05:29,660 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 22:05:40,533 - root - INFO - Saved 3 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:05:40,533 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:05:51,388 - root - INFO - Saved 3 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:05:51,389 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:07:31,566 - root - INFO - Theme changed to dark
+2025-06-30 22:07:32,299 - root - INFO - Theme changed to light
+2025-06-30 22:09:09,241 - root - INFO - Application started
+2025-06-30 22:09:09,258 - root - INFO - Loaded 4 tasks from c:\SH\task_Lists.conf
+2025-06-30 22:09:09,258 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 22:11:49,497 - root - INFO - Application started
+2025-06-30 22:11:49,512 - root - INFO - Loaded 4 tasks from c:\SH\task_Lists.conf
+2025-06-30 22:11:49,512 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 22:16:29,365 - root - INFO - Application started
+2025-06-30 22:16:29,375 - root - INFO - Loaded 4 tasks from c:\SH\task_Lists.conf
+2025-06-30 22:16:29,375 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 22:16:38,066 - root - INFO - Saved 3 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:16:38,066 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:16:45,545 - root - INFO - Saved 3 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:16:45,545 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:19:45,914 - root - INFO - Application started
+2025-06-30 22:19:45,930 - root - INFO - Loaded 4 tasks from c:\SH\task_Lists.conf
+2025-06-30 22:19:45,930 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 22:19:53,224 - root - INFO - Saved 3 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:19:53,224 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:25:31,287 - root - INFO - Application started
+2025-06-30 22:25:31,304 - root - INFO - Loaded 4 tasks from c:\SH\task_Lists.conf
+2025-06-30 22:25:31,305 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 22:25:36,994 - root - INFO - Saved 2 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:25:36,994 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:25:39,485 - root - INFO - Saved 2 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:25:39,485 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:29:37,695 - root - INFO - Application started
+2025-06-30 22:29:37,703 - root - INFO - Loaded 4 tasks from c:\SH\task_Lists.conf
+2025-06-30 22:29:37,703 - root - INFO - Loaded 6 tags from c:\SH\tags.conf
+2025-06-30 22:29:43,092 - root - INFO - Saved 2 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:29:43,092 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:29:50,069 - root - INFO - Saved 3 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:29:50,069 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
+2025-06-30 22:29:52,623 - root - INFO - Saved 3 today's tasks to c:\SH\todaytask.conf
+2025-06-30 22:29:52,623 - root - INFO - Saved 4 tasks to c:\SH\task_Lists.conf
